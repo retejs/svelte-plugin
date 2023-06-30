@@ -39,7 +39,7 @@
 
   <!-- Outputs -->
   {#each outputs as [key, output]}
-    <div class="output" data-testid="'output-'+key">
+    <div class="output" data-testid={"output-" + key}>
       <div class="output-title" data-testid="output-title">
         {output.label || ""}
       </div>
@@ -83,7 +83,7 @@
 
   <!-- Inputs -->
   {#each inputs as [key, input]}
-    <div class="input" data-testid="'input-'+key">
+    <div class="input" data-testid={"input-" + key}>
       <Ref
         class="input-socket"
         data-testid="input-socket"
