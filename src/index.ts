@@ -8,6 +8,7 @@ import type { Position, RenderSignal } from './types'
 export * as Presets from './presets'
 export type { ClassicScheme, SvelteArea2D } from './presets/classic/types'
 export type { RenderPreset } from './presets/types'
+export { default as Ref } from './Ref.svelte'
 
 export type Produces<Schemes extends BaseSchemes> =
   | { type: 'connectionpath', data: { payload: Schemes['Connection'], path?: string, points: Position[] } }

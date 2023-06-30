@@ -12,7 +12,7 @@
   export let path: (start: Position, end: Position) => Promise<string>;
 
   let observedStart = { x: 0, y: 0 };
-  let observedEnd = { x: 560, y: 70 };
+  let observedEnd = { x: 0, y: 0 };
   let observedPath = "";
 
   $: startPosition = start && "x" in start ? start : observedStart;
