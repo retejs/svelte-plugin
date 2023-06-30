@@ -34,7 +34,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  class="menu"
+  class="menu rete-context-menu"
   on:mouseover={hide.cancel}
   on:mouseleave={hide.call}
   data-testid="context-menu"
