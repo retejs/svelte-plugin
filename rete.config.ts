@@ -6,7 +6,7 @@ import svelte from 'rollup-plugin-svelte'
 
 export default <ReteOptions>{
   input: 'src/index.ts',
-  name: 'SvelteRenderPlugin',
+  name: 'ReteSveltePlugin',
   globals: {
     'rete': 'Rete',
     'rete-area-plugin': 'ReteAreaPlugin',

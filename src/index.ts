@@ -18,7 +18,7 @@ type Requires<Schemes extends BaseSchemes> =
   | RenderSignal<'connection', { payload: Schemes['Connection'], start?: Position, end?: Position }>
   | { type: 'unmount', data: { element: HTMLElement } }
 
-export class SvelteRenderPlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> extends Scope<Produces<Schemes>, [Requires<Schemes> | T]> {
+export class SveltePlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> extends Scope<Produces<Schemes>, [Requires<Schemes> | T]> {
   renderer: Renderer<SvelteComponent>
   presets: RenderPreset<Schemes, T>[] = []
   owners = new WeakMap<HTMLElement, RenderPreset<Schemes, T>>()
