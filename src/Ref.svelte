@@ -8,6 +8,11 @@
 
   let ref: HTMLElement;
 
+  $: {
+    // trigger 'rendered' on update
+    if (ref) init(ref);
+  }
+
   onMount(() => {
     init(ref);
     return () => {
