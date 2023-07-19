@@ -10,6 +10,10 @@ export type { ClassicScheme, SvelteArea2D } from './presets/classic/types'
 export type { RenderPreset } from './presets/types'
 export { default as Ref } from './Ref.svelte'
 
+/**
+ * Signals that can be emitted by the plugin
+ * @priority 10
+ */
 export type Produces<Schemes extends BaseSchemes> =
   | { type: 'connectionpath', data: { payload: Schemes['Connection'], path?: string, points: Position[] } }
 
@@ -18,6 +22,13 @@ type Requires<Schemes extends BaseSchemes> =
   | RenderSignal<'connection', { payload: Schemes['Connection'], start?: Position, end?: Position }>
   | { type: 'unmount', data: { element: HTMLElement } }
 
+/**
+ * Svelte plugin. Renders nodes, connections and other elements using React.
+ * @priority 9
+ * @emits connectionpath
+ * @listens render
+ * @listens unmount
+ */
 export class SveltePlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> extends Scope<Produces<Schemes>, [Requires<Schemes> | T]> {
   renderer: Renderer<SvelteComponent>
   presets: RenderPreset<Schemes, T>[] = []
@@ -100,6 +111,10 @@ export class SveltePlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> ex
     return false
   }
 
+  /**
+   * Adds a preset to the plugin.
+   * @param preset Preset that can render nodes, connections and other elements.
+   */
   public addPreset<K>(preset: RenderPreset<Schemes, CanAssignSignal<T, K> extends true ? K : 'Cannot apply preset. Provided signals are not compatible'>) {
     const local = preset as RenderPreset<Schemes, T>
 
