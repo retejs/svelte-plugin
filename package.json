@@ -35,7 +35,7 @@
     "@sveltejs/package": "^2.1.0",
     "rete": "^2.0.1",
     "rete-area-plugin": "^2.0.0",
-    "rete-cli": "^1.0.1",
+    "rete-cli": "^1.0.2",
     "rete-render-utils": "^2.0.0",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.6",
