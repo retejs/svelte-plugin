@@ -42,8 +42,8 @@
     <div class="output" data-testid={"output-" + key}>
       <div class="output-title" data-testid="output-title">
         {output.label || ""}
-      </div>
-      <Ref
+      </div><!--
+      --><Ref
         class="output-socket"
         data-testid="output-socket"
         init={(element) =>
@@ -100,8 +100,8 @@
             },
           })}
         unmount={(ref) => emit({ type: "unmount", data: { element: ref } })}
-      />
-      {#if !input.control || !input.showControl}
+      /><!--
+      -->{#if !input.control || !input.showControl}
         <div class="input-title" data-testid="input-title">
           {input.label || ""}
         </div>
