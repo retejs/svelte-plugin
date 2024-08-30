@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-invalid-void-type */
 import type { ComponentType, SvelteComponent } from 'svelte'
 
 import Root from './Root.svelte'

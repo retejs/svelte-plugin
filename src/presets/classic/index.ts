@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+
 import { ClassicPreset, Scope } from 'rete'
 import { classicConnectionPath, getDOMSocketPosition, loopConnectionPath, SocketPositionWatcher } from 'rete-render-utils'
 import type { ComponentType, SvelteComponent } from 'svelte'
@@ -24,22 +24,20 @@ type CustomizationProps<Schemes extends ClassicScheme> = {
   connection?: (data: ExtractPayload<Schemes, 'connection'>) => Component<any> | null
   socket?: (data: ExtractPayload<Schemes, 'socket'>) => Component<any> | null
   control?: <N extends ClassicPreset.Control>(data: ExtractPayload<Schemes, 'control'>)
-    => Component<{ data: N }> | null
+  => Component<{ data: N }> | null
 }
 type ClassicProps<Schemes extends ClassicScheme, K> = {
-  socketPositionWatcher?: SocketPositionWatcher<Scope<never, [K]>>,
+  socketPositionWatcher?: SocketPositionWatcher<Scope<never, [K]>>
   customize?: CustomizationProps<Schemes>
 }
 
 /**
  * Classic preset for rendering nodes, connections, controls and sockets.
  */
-export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Schemes>>(
-  props?: ClassicProps<Schemes, K>
-): RenderPreset<Schemes, K> {
+export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Schemes>>(props?: ClassicProps<Schemes, K>): RenderPreset<Schemes, K> {
   const positionWatcher = typeof props?.socketPositionWatcher === 'undefined'
     ? getDOMSocketPosition<Schemes, K>()
-    : props?.socketPositionWatcher
+    : props.socketPositionWatcher
   const { node, connection, socket, control } = props?.customize || {}
 
   return {
@@ -60,8 +58,12 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
 
         return {
           data: payload,
-          ...(start ? { start } : {}),
-          ...(end ? { end } : {})
+          ...start
+            ? { start }
+            : {},
+          ...end
+            ? { end }
+            : {}
         }
       }
       return { data: payload }
@@ -72,21 +74,27 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
       const emit = parent.emit.bind(parent)
 
       if (context.data.type === 'node') {
-        const component = node ? node(context.data) : Node
+        const component = node
+          ? node(context.data)
+          : Node
 
         return component && {
-          component, props: {
+          component,
+          props: {
             data: context.data.payload,
             emit
           }
         }
       } else if (context.data.type === 'connection') {
-        const component = connection ? connection(context.data) : Connection
+        const component = connection
+          ? connection(context.data)
+          : Connection
         const { payload } = context.data
         const { source, target, sourceOutput, targetInput } = payload
 
         return component && {
-          component: ConnectionWrapper, props: {
+          component: ConnectionWrapper,
+          props: {
             data: context.data.payload,
             component,
             start: context.data.start || ((change: any) => positionWatcher.listen(source, 'output', sourceOutput, change)),
@@ -110,10 +118,13 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
         }
       } else if (context.data.type === 'socket') {
         const { payload } = context.data
-        const component = socket ? socket(context.data) : Socket
+        const component = socket
+          ? socket(context.data)
+          : Socket
 
         return component && {
-          component, props: {
+          component,
+          props: {
             data: payload
           }
         }
@@ -124,7 +135,8 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
           const component = control(context.data)
 
           return component && {
-            component, props: {
+            component,
+            props: {
               data: payload
             }
           }
@@ -132,7 +144,8 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
 
         return context.data.payload instanceof ClassicPreset.InputControl
           ? {
-            component: Control, props: {
+            component: Control,
+            props: {
               data: payload
             }
           }
