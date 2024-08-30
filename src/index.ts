@@ -102,7 +102,7 @@ export class SveltePlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> ex
         element,
         result.component,
         result.props,
-        () => parent?.emit({ type: 'rendered', data: (context as Requires<Schemes>).data } as T)
+        () => void parent.emit({ type: 'rendered', data: (context as Requires<Schemes>).data } as T)
       )
 
       this.owners.set(element, preset)

@@ -33,9 +33,10 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@sveltejs/package": "^2.1.0",
+    "globals": "^15.9.0",
     "rete": "^2.0.1",
     "rete-area-plugin": "^2.0.0",
-    "rete-cli": "^1.0.2",
+    "rete-cli": "~2.0.0",
     "rete-render-utils": "^2.0.0",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.6",

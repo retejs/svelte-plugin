@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-invalid-void-type */
 import type { BaseSchemes } from 'rete'
 import type { ComponentType } from 'svelte'
 
