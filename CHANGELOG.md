@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/retejs/svelte-plugin/compare/v2.0.2...v2.0.3) (2024-08-30)
+
+
+### Bug Fixes
+
+* update cli and fix linting errors ([12db8f5](https://github.com/retejs/svelte-plugin/commit/12db8f5a87110b29ab1654b1cf7053c1729e187a))
+
 ## [2.0.2](https://github.com/retejs/svelte-plugin/compare/v2.0.1...v2.0.2) (2024-08-23)
 
 
