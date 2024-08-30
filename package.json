@@ -36,7 +36,7 @@
     "globals": "^15.9.0",
     "rete": "^2.0.1",
     "rete-area-plugin": "^2.0.0",
-    "rete-cli": "~2.0.0",
+    "rete-cli": "~2.0.1",
     "rete-render-utils": "^2.0.0",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.6",
