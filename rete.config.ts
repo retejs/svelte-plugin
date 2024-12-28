@@ -1,11 +1,22 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
 import { ReteOptions } from 'rete-cli'
 import scss from 'rollup-plugin-scss'
 import svelte from 'rollup-plugin-svelte'
 
-export default <ReteOptions>{
+const buildVariants = [
+  {
+    key: 'svelte3-4',
+    output: '.'
+  }, {
+    key: 'svelte5.svelte',
+    output: '5'
+  }
+]
+
+export default buildVariants.map(({ key, output }) => (<ReteOptions>{
   input: 'src/index.ts',
+  output,
   name: 'ReteSveltePlugin',
   globals: {
     'rete': 'Rete',
@@ -16,8 +27,10 @@ export default <ReteOptions>{
     browser: true
   },
   plugins: [
+    replace({
+      'process.env.COMPAT': `./compat/${key}`
+    }),
     svelte({
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
       preprocess: require('svelte-preprocess')()
     }),
     resolve({
@@ -29,4 +42,4 @@ export default <ReteOptions>{
       insert: true
     })
   ]
-}
+}))

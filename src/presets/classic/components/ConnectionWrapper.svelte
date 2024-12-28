@@ -1,11 +1,10 @@
 <script lang="ts">
-  import type { ComponentType } from "svelte";
-  import { SvelteComponent, onMount } from "svelte";
+  import { Component, onMount } from "svelte";
   import type { ClassicScheme } from "../types";
   import type { Position } from "../../../types";
   type PositionWatcher = (cb: (value: Position) => void) => () => void;
 
-  export let component: ComponentType<SvelteComponent>;
+  export let component: Component;
   export let data: ClassicScheme["Connection"] & { isLoop?: boolean };
   export let start: Position | PositionWatcher;
   export let end: Position | PositionWatcher;

@@ -1,47 +1,40 @@
 /* eslint-disable @typescript-eslint/no-invalid-void-type */
-import type { ComponentType, SvelteComponent } from 'svelte'
-
-import Root from './Root.svelte'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { mount, unmount, update } from 'process.env.COMPAT'
+import { Component } from 'svelte'
 
 type Payload = Record<string, unknown> | null | void | undefined
 
-export type Renderer<I extends SvelteComponent> = {
+export type Renderer<I extends Record<string, any>> = {
   get(element: Element): I | undefined
-  mount(element: Element, svelteComponent: ComponentType<I>, payload: Payload, onRendered: () => void): I
+  mount(element: Element, svelteComponent: Component, payload: Payload, onRendered: () => void): I
   update(app: I, payload: Payload): void
   unmount(element: Element): void
 }
 
-export function getRenderer(): Renderer<SvelteComponent> {
-  const instances = new Map<Element, SvelteComponent>()
+export function getRenderer(): Renderer<Record<string, any>> {
+  const instances = new Map<Element, Record<string, any>>()
 
   return {
     get(element) {
       return instances.get(element)
     },
     mount(element, svelteComponent, payload, onRendered) {
-      const app = new Root({
-        target: element,
-        props: {
-          component: svelteComponent,
-          // eslint-disable-next-line no-undefined
-          props: payload || undefined,
-          onRendered
-        }
-      })
+      const app = mount(element, svelteComponent, payload, onRendered)
 
       instances.set(element, app)
 
       return app
     },
     update(app, payload) {
-      app.$set({ props: { ...app.props, ...payload } })
+      update(app, payload)
     },
     unmount(element) {
       const app = instances.get(element)
 
       if (app) {
-        app.$destroy()
+        unmount(app)
         instances.delete(element)
       }
     }
