@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/retejs/svelte-plugin/compare/v2.0.3...v2.1.0) (2024-12-28)
+
+
+### Features
+
+* support svelte 5 ([2abb3ea](https://github.com/retejs/svelte-plugin/commit/2abb3ea02c4cb061c5b0f39cb60e03d0dde137e3))
+
 ## [2.0.3](https://github.com/retejs/svelte-plugin/compare/v2.0.2...v2.0.3) (2024-08-30)
 
 
