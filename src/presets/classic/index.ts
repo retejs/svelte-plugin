@@ -1,7 +1,9 @@
 
 import { ClassicPreset, Scope } from 'rete'
-import { classicConnectionPath, getDOMSocketPosition, loopConnectionPath, SocketPositionWatcher } from 'rete-render-utils'
-import type { ComponentType, SvelteComponent } from 'svelte'
+import {
+  classicConnectionPath, getDOMSocketPosition, loopConnectionPath, SocketPositionWatcher
+} from 'rete-render-utils'
+import { Component } from 'svelte'
 
 import type { Position } from '../../types'
 import type { RenderPreset } from '../types'
@@ -16,8 +18,6 @@ export { default as Connection } from './components/Connection.svelte'
 export { default as Control } from './components/Control.svelte'
 export { default as Node } from './components/Node.svelte'
 export { default as Socket } from './components/Socket.svelte'
-
-type Component<Props extends Record<string, any>> = ComponentType<SvelteComponent<Props>>
 
 type CustomizationProps<Schemes extends ClassicScheme> = {
   node?: (data: ExtractPayload<Schemes, 'node'>) => Component<any> | null
@@ -132,7 +132,7 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
         const { payload } = context.data
 
         if (control) {
-          const component = control(context.data)
+          const component = control(context.data) as null | Component<any>
 
           return component && {
             component,
@@ -144,7 +144,7 @@ export function setup<Schemes extends ClassicScheme, K extends SvelteArea2D<Sche
 
         return context.data.payload instanceof ClassicPreset.InputControl
           ? {
-            component: Control,
+            component: Control as Component<any>,
             props: {
               data: payload
             }

@@ -1,5 +1,4 @@
 import { BaseSchemes, CanAssignSignal, Scope } from 'rete'
-import type { SvelteComponent } from 'svelte'
 
 import type { RenderPreset } from './presets/types'
 import { getRenderer, Renderer } from './renderer'
@@ -30,7 +29,7 @@ type Requires<Schemes extends BaseSchemes> =
  * @listens unmount
  */
 export class SveltePlugin<Schemes extends BaseSchemes, T = Requires<Schemes>> extends Scope<Produces<Schemes>, [Requires<Schemes> | T]> {
-  renderer: Renderer<SvelteComponent>
+  renderer: Renderer<Record<string, any>>
   presets: RenderPreset<Schemes, T>[] = []
   owners = new WeakMap<HTMLElement, RenderPreset<Schemes, T>>()
 
