@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Component, onMount } from "svelte";
+  import { type Component, onMount } from "svelte";
   import type { ClassicScheme } from "../types";
   import type { Position } from "../../../types";
   type PositionWatcher = (cb: (value: Position) => void) => () => void;
