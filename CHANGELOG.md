@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/retejs/svelte-plugin/compare/v2.1.0...v2.1.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* add type annotation for Component import in ConnectionWrapper.svelte ([da99104](https://github.com/retejs/svelte-plugin/commit/da991049787feba8a3c87729f6c03a503bee223b))
+
 # [2.1.0](https://github.com/retejs/svelte-plugin/compare/v2.0.3...v2.1.0) (2024-12-28)
 
 
