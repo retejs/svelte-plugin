@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/retejs/svelte-plugin/compare/v2.1.1...v2.1.2) (2026-07-10)
+
+
+### Bug Fixes
+
+* set input control text color for dark color-scheme ([8672188](https://github.com/retejs/svelte-plugin/commit/8672188a8e76591012a5ed0c82ac3dc8a59fb3b0))
+
 ## [2.1.1](https://github.com/retejs/svelte-plugin/compare/v2.1.0...v2.1.1) (2025-06-30)
 
 
